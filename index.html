@@ -6,7 +6,7 @@
     <title>Modelo 3D de Célula em Realidade Aumentada</title>
     <script type="module" src="https://unpkg.com/@google/model-viewer@^3.0.0/dist/model-viewer.min.js"></script>
     <style>
-        /* Ocupa a tela inteira */
+        /* Estilos para ocupar toda a tela */
         html, body {
             height: 100%;
             margin: 0;
@@ -15,24 +15,39 @@
             justify-content: center;
             align-items: center;
         }
+
         model-viewer {
             width: 100vw;
             height: 100vh;
+        }
+
+        button {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #6200ee;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 10;
         }
     </style>
 </head>
 <body>
     <model-viewer 
-        src="Célula%20animal.glb"    <!-- Verifique que o nome do arquivo seja correto e substitua espaços por %20 -->
+        src="Célula%20animal.glb"  <!-- Verifique se o nome do arquivo é exato e sem espaços -->
         alt="Modelo de célula"
         ar
         ar-scale="auto"
-        ar-modes="scene-viewer webxr quick-look"  <!-- Prioriza AR em dispositivos móveis -->
+        ar-modes="scene-viewer webxr quick-look"
         camera-controls 
-        auto-rotate
-        quick-look-browsers="safari chrome">
-        <!-- Adicionando botão para abrir diretamente em RA -->
-        <button slot="ar-button" style="background-color: #6200ee; color: white; border: none; padding: 10px; font-size: 16px; cursor: pointer;">
+        auto-rotate>
+        
+        <!-- Botão de AR personalizado -->
+        <button slot="ar-button">
             Ver em Realidade Aumentada
         </button>
     </model-viewer>
