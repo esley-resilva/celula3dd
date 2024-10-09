@@ -3,53 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelo 3D de Célula em Realidade Aumentada</title>
+    <title>Modelo 3D de Célula</title>
     <script type="module" src="https://unpkg.com/@google/model-viewer@^3.0.0/dist/model-viewer.min.js"></script>
     <style>
-        /* Estilos para ocupar toda a tela */
-        html, body {
-            height: 100%;
+        body, html {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
         }
-
         model-viewer {
             width: 100vw;
             height: 100vh;
-        }
-
-        button {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #6200ee;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            z-index: 10;
+            display: block;
         }
     </style>
 </head>
 <body>
+
+    <!-- Exibindo modelo 3D local com <model-viewer> -->
     <model-viewer 
-        src="celula/scene.gltf"  <!-- Verifique se o nome do arquivo é exato e sem espaços -->
+        src="celula/scene.gltf"
         alt="Modelo de célula"
         ar
-        ar-scale="auto"
-        ar-modes="scene-viewer webxr quick-look"
-        camera-controls 
+        ar-scale="auto"  <!-- Ajusta o tamanho automaticamente ao ambiente -->
+        ar-placement="floor"  <!-- Coloca o modelo no chão para melhorar a experiência -->
+        ar-modes="scene-viewer webxr quick-look" <!-- Modos de RA disponíveis -->
+        camera-controls
         auto-rotate>
-        
-        <!-- Botão de AR personalizado -->
-        <button slot="ar-button">
-            Ver em Realidade Aumentada
-        </button>
     </model-viewer>
+
 </body>
 </html>
+
