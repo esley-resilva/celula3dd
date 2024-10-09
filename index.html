@@ -12,11 +12,29 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
         model-viewer {
             width: 100vw;
             height: 100vh;
             display: block;
+        }
+        button {
+            position: absolute;
+            bottom: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -24,15 +42,33 @@
 
     <!-- Exibindo modelo 3D local com <model-viewer> -->
     <model-viewer 
+        id="modelViewer"
         src="celula/scene.gltf"
         alt="Modelo de célula"
         ar
-        ar-scale="auto"  <!-- Ajusta o tamanho automaticamente ao ambiente -->
-        ar-placement="floor"  <!-- Coloca o modelo no chão para melhorar a experiência -->
-        ar-modes="scene-viewer webxr quick-look" <!-- Modos de RA disponíveis -->
+        ar-scale="auto"
+        ar-placement="floor"
+        ar-modes="scene-viewer webxr quick-look"
         camera-controls
         auto-rotate>
     </model-viewer>
+
+    <!-- Botão para abrir a RA -->
+    <button id="arButton">Ativar Realidade Aumentada</button>
+
+    <script>
+        const modelViewer = document.getElementById('modelViewer');
+        const arButton = document.getElementById('arButton');
+
+        arButton.addEventListener('click', () => {
+            // Verifica se o AR está disponível e abre a câmera
+            if (modelViewer.canActivateAR) {
+                modelViewer.activateAR();
+            } else {
+                alert('AR não disponível no seu dispositivo.');
+            }
+        });
+    </script>
 
 </body>
 </html>
